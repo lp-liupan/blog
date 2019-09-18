@@ -55,17 +55,17 @@
   };
 </script>
 
-  <meta name="description" content="前言">
+  <meta name="description" content="前言 在使用windows和macOS的时候没有感觉到node版本的有什么难处理的，但是当使用linux系统的时候，发现安装node是个比较麻烦的事情。比如：如果ubuntu自带的apt-get来安装，只能安装比较低版本的，如果想要升级版本也是个挺麻烦的事情。这个时候node版本管理神器nvm的作用就体现出来了，可以随意的下载各个版本的node，并且可以随时进行版本的切换。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nvm的使用">
 <meta property="og:url" content="https://www.xiaotaotao.vip/2019/09/18/nvm的使用/index.html">
 <meta property="og:site_name" content="学习记录">
-<meta property="og:description" content="前言">
+<meta property="og:description" content="前言 在使用windows和macOS的时候没有感觉到node版本的有什么难处理的，但是当使用linux系统的时候，发现安装node是个比较麻烦的事情。比如：如果ubuntu自带的apt-get来安装，只能安装比较低版本的，如果想要升级版本也是个挺麻烦的事情。这个时候node版本管理神器nvm的作用就体现出来了，可以随意的下载各个版本的node，并且可以随时进行版本的切换。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-18T07:09:03.527Z">
+<meta property="og:updated_time" content="2019-09-18T08:04:55.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nvm的使用">
-<meta name="twitter:description" content="前言">
+<meta name="twitter:description" content="前言 在使用windows和macOS的时候没有感觉到node版本的有什么难处理的，但是当使用linux系统的时候，发现安装node是个比较麻烦的事情。比如：如果ubuntu自带的apt-get来安装，只能安装比较低版本的，如果想要升级版本也是个挺麻烦的事情。这个时候node版本管理神器nvm的作用就体现出来了，可以随意的下载各个版本的node，并且可以随时进行版本的切换。">
   <link rel="canonical" href="https://www.xiaotaotao.vip/2019/09/18/nvm的使用/">
 
 
@@ -265,7 +265,7 @@
                 
               
 
-              <time title="创建时间：2019-09-18 15:08:31 / 修改时间：15:09:03" itemprop="dateCreated datePublished" datetime="2019-09-18T15:08:31+08:00">2019-09-18</time>
+              <time title="创建时间：2019-09-18 15:08:31 / 修改时间：16:04:55" itemprop="dateCreated datePublished" datetime="2019-09-18T15:08:31+08:00">2019-09-18</time>
             </span>
           
             
@@ -305,7 +305,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>在使用<code>windows</code>和<code>macOS</code>的时候没有感觉到<code>node</code>版本的有什么难处理的，但是当使用<code>linux</code>系统的时候，发现安装<code>node</code>是个比较麻烦的事情。比如：如果<code>ubuntu</code>自带的<code>apt-get</code>来安装，只能安装比较低版本的，如果想要升级版本也是个挺麻烦的事情。这个时候<code>node</code>版本管理神器<code>nvm</code>的作用就体现出来了，可以随意的下载各个版本的<code>node</code>，并且可以随时进行版本的切换。</p>
+</blockquote><a id="more"></a>
+<h2 id="安装nvm"><a href="#安装nvm" class="headerlink" title="安装nvm"></a>安装nvm</h2><p>mac可以使用<code>brew</code>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nvm</span><br></pre></td></tr></table></figure>
+
+<p>ubuntu可以使用<code>curl</code>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用curl安装的nvm，需要在安装完成后重新打开命令行</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="nvm操作"><a href="#nvm操作" class="headerlink" title="nvm操作"></a>nvm操作</h2><p>下载最新版<code>node</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install stable</span><br></pre></td></tr></table></figure>
+
+<p>下载指定版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 版本号</span><br></pre></td></tr></table></figure>
+
+<p>查看已经下载的<code>node</code>版本列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls</span><br></pre></td></tr></table></figure>
+
+<p>切换<code>node</code>版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 版本号</span><br></pre></td></tr></table></figure>
+
+<p>修改默认版本（如果不修改默认版本，可能会导致关闭当前命令行后<code>node</code>版本又恢复为低版本）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm <span class="built_in">alias</span> default 版本号</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>具体<code>nvm</code>操作方法，请参考<a href="https://github.com/nvm-sh/nvm#usage" title="nvm官方文档" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+
     </div>
 
     
@@ -378,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nvm"><span class="nav-number">2.</span> <span class="nav-text">安装nvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nvm操作"><span class="nav-number">3.</span> <span class="nav-text">nvm操作</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
