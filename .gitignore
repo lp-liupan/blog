@@ -1,9 +1,6 @@
 .DS_Store
 .idea
 Thumbs.db
-db.json
 *.log
 node_modules/
-public/
-.deploy*/
 package-lock.json
