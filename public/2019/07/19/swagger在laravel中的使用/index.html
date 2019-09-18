@@ -4,133 +4,90 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-
-
-
-
-
-
-
-
-
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
-
-
-
-
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '7.2.0',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
       copy_success: '复制成功',
       copy_failure: '复制失败'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释        请求方法 请求的路径 请求的参数 返沪状态 返回参数     另外强调一点，所有的sw">
+  <meta name="description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释">
 <meta property="og:type" content="article">
 <meta property="og:title" content="swagger在laravel中的使用">
 <meta property="og:url" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/index.html">
 <meta property="og:site_name" content="学习记录">
-<meta property="og:description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释        请求方法 请求的路径 请求的参数 返沪状态 返回参数     另外强调一点，所有的sw">
+<meta property="og:description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger1.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger2.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger3.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger4.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger5.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger6.png">
-<meta property="og:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger7.png">
-<meta property="og:updated_time" content="2019-08-04T02:08:55.009Z">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger1.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger2.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger3.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger4.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger5.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger6.png">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger7.png">
+<meta property="og:updated_time" content="2019-09-18T06:28:29.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="swagger在laravel中的使用">
-<meta name="twitter:description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释        请求方法 请求的路径 请求的参数 返沪状态 返回参数     另外强调一点，所有的sw">
-<meta name="twitter:image" content="https://www.xiaotaotao.vip/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger1.png">
-
-
-
-
-
-  
-  
+<meta name="twitter:description" content="开始前了解 推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释">
+<meta name="twitter:image" content="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/swagger1.png">
   <link rel="canonical" href="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/">
 
 
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
-  
   <title>swagger在laravel中的使用 | 学习记录</title>
   
 
@@ -141,13 +98,8 @@
 
 
 
-
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -156,7 +108,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -173,29 +125,20 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">学习记录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -208,110 +151,100 @@
 </div>
 
 
-
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
+        <li class="menu-item menu-item-home">
       
     
-
-    
+      
+      
+        
+      
+        
+      
+        
       
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
+        <li class="menu-item menu-item-categories">
       
     
-
-    
+      
+      
+        
+      
+        
+          
+        
+      
+        
       
     
 
     <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
 
   </li>
+      
+      
+      
         
-        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
         
           
-          <li class="menu-item menu-item-archives">
-
-    
-    
+        
+      
+        
+      
+        
       
     
 
-    
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">6</span></a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
     
 
-  
-
-  
 </nav>
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-    
-
-  
-
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -323,31 +256,18 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="学习记录">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">swagger在laravel中的使用
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">swagger在laravel中的使用
-
-              
-            
-          </h1>
-        
+          
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -356,8 +276,6 @@
               <time title="创建时间：2019-07-19 11:34:01" itemprop="dateCreated datePublished" datetime="2019-07-19T11:34:01+08:00">2019-07-19</time>
             </span>
           
-
-          
             
 
             
@@ -365,18 +283,16 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                <time title="修改时间：2019-08-04 10:08:55" itemprop="dateModified" datetime="2019-08-04T10:08:55+08:00">2019-08-04</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-18 14:28:29" itemprop="dateModified" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
               </span>
             
-          
-
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发小工具/" itemprop="url" rel="index"><span itemprop="name">开发小工具</span></a></span>
 
@@ -387,35 +303,17 @@
           
 
           
-            
-            
-          
-
-          
-          
-            <span id="/2019/07/19/swagger在laravel中的使用/" class="post-meta-item leancloud_visitors" data-flag-title="swagger在laravel中的使用">
+            <span id="/2019/07/19/swagger在laravel中的使用/" class="post-meta-item leancloud_visitors" data-flag-title="swagger在laravel中的使用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              
-                <span class="leancloud-visitors-count"></span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
             </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
           
 
         </div>
       </header>
-    
 
     
     
@@ -423,12 +321,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
         <h1 id="开始前了解"><a href="#开始前了解" class="headerlink" title="开始前了解"></a>开始前了解</h1><blockquote>
 <p>推荐一个比较完成的文档<a href="https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896" target="_blank" rel="noopener">https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896</a><br>swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释     </p>
-</blockquote>
+</blockquote><a id="more"></a>
 <ol>
 <li>请求方法</li>
 <li>请求的路径</li>
@@ -444,7 +339,7 @@
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    //请求的方法写在开头，例如：GET、POST、DELETE等</span></span><br><span class="line"><span class="comment">    <span class="doctag">@SWG</span>\GET(</span></span><br><span class="line"><span class="comment">        tags=&#123;"巡检"&#125;,                   //相当于给这个请求归类，一般按照模块划分，这里指这个请求属于巡检模块</span></span><br><span class="line"><span class="comment">        path="/checktaskitem",          //请求的路径</span></span><br><span class="line"><span class="comment">        summary="根据巡检员获取其巡检列表"  //对改请求的描述，主要说明其功能</span></span><br><span class="line"><span class="comment">    )</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger1.png">  
+<img src="/2019/07/19/swagger在laravel中的使用/swagger1.png">  
 
 <h1 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h1><blockquote>
 <p>参数主要有几种形式：</p>
@@ -459,7 +354,7 @@
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    //请求的方法写在开头，例如：GET、POST、DELETE等</span></span><br><span class="line"><span class="comment">    <span class="doctag">@SWG</span>\GET(</span></span><br><span class="line"><span class="comment">        tags=&#123;"巡检"&#125;,                   //相当于给这个请求归类，一般按照模块划分，这里指这个请求属于巡检模块</span></span><br><span class="line"><span class="comment">        path="/checktaskitem/failed",   //请求的路径</span></span><br><span class="line"><span class="comment">        summary="根据巡检id获取巡检违规项" //对改请求的描述，主要说明其功能</span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        //请求参数</span></span><br><span class="line"><span class="comment">        <span class="doctag">@SWG</span>\Parameter(</span></span><br><span class="line"><span class="comment">            name="item_id",      //参数key</span></span><br><span class="line"><span class="comment">            description="巡检id",//参数注释</span></span><br><span class="line"><span class="comment">            required=true,      //参数是否必填，注意：这里填写boolean值，不能填写字符串</span></span><br><span class="line"><span class="comment">            type="integer",     //参数值类型，注意：数值为integer，字符串为string</span></span><br><span class="line"><span class="comment">            in="query",         //参数传递的形式，注意：这里主要有query、path、body（比较麻烦，单独讨论）</span></span><br><span class="line"><span class="comment">        )</span></span><br><span class="line"><span class="comment">    )</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger2.png">   
+<img src="/2019/07/19/swagger在laravel中的使用/swagger2.png">   
 
 <h2 id="复杂一点的请求方式"><a href="#复杂一点的请求方式" class="headerlink" title="复杂一点的请求方式"></a>复杂一点的请求方式</h2><blockquote>
 <p>使用post或者put等方法的时候往往涉及到了对象、数组的多层嵌套进行传值。在swagger中书写起来比较麻烦一点。对Parameter传递的参数中需要添加一个Schema方法，该方法作用就是可以在文档中生成一个model，展示请求参数的注释和数据结构。</p>
@@ -469,84 +364,59 @@
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">     *  <span class="doctag">@SWG</span>\PUT(</span></span><br><span class="line"><span class="comment">     *   path="/checktaskitem/&#123;item_id&#125;",       //注意：当有参数是以path的方式传递，要在这里加上&#123;&#125;</span></span><br><span class="line"><span class="comment">     *   tags=&#123;"巡检"&#125;,</span></span><br><span class="line"><span class="comment">     *   summary="提交巡检结果",</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">             <span class="doctag">@SWG</span>\Parameter(                    //这里就是使用path方式传递的参数</span></span><br><span class="line"><span class="comment">                name="item_id",</span></span><br><span class="line"><span class="comment">                required=true,</span></span><br><span class="line"><span class="comment">                type="integer",</span></span><br><span class="line"><span class="comment">                description="巡检id",</span></span><br><span class="line"><span class="comment">                in="path"</span></span><br><span class="line"><span class="comment">             ),</span></span><br><span class="line"><span class="comment">             <span class="doctag">@SWG</span>\Parameter(                  //当有body方式传递时，单独用一个parameter，其类型定义为body</span></span><br><span class="line"><span class="comment">               name="person",</span></span><br><span class="line"><span class="comment">               in="body",</span></span><br><span class="line"><span class="comment">               required=true,</span></span><br><span class="line"><span class="comment">               </span></span><br><span class="line"><span class="comment">               <span class="doctag">@SWG</span>\Schema(                   //Schema的作用时可以有一个model对参数进行解释，具体作用用截图展示</span></span><br><span class="line"><span class="comment">                   type="object"              //给传递的参数定义类型，目前是对象，也可以定义为array</span></span><br><span class="line"><span class="comment">                   </span></span><br><span class="line"><span class="comment">                   <span class="doctag">@SWG</span>\Property(                      //注意：当使用了Schema后，每个字段需要用Property来定义</span></span><br><span class="line"><span class="comment">                        property="item_serialno",      //字段名</span></span><br><span class="line"><span class="comment">                        type="string",                 //字段类型</span></span><br><span class="line"><span class="comment">                        description="和对讲平台给的巡检单号", //字段的注释</span></span><br><span class="line"><span class="comment">                   ),</span></span><br><span class="line"><span class="comment">          </span></span><br><span class="line"><span class="comment">                   <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment">                        property="item_resultdata",</span></span><br><span class="line"><span class="comment">                        type="array",                 //注意：这里把这个字段定义为了数组（也可以定义为object）</span></span><br><span class="line"><span class="comment">                        description="巡检结果具体项",</span></span><br><span class="line"><span class="comment">                        </span></span><br><span class="line"><span class="comment">                        <span class="doctag">@SWG</span>\Items(                  //注意：如果父级是[]子级是&#123;&#125;，需要加入Items，如果父级&#123;&#125;则不用添加Items</span></span><br><span class="line"><span class="comment">                            <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment">                               property="item_id",</span></span><br><span class="line"><span class="comment">                               type="integer",</span></span><br><span class="line"><span class="comment">                               description="巡检项id"</span></span><br><span class="line"><span class="comment">                            ),</span></span><br><span class="line"><span class="comment">                            <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment">                                property="children",</span></span><br><span class="line"><span class="comment">                                type="array",         //同上，这里又有一个数组，并且使用了Items说明数组中嵌套了对象</span></span><br><span class="line"><span class="comment">                                description="具体巡检内容",</span></span><br><span class="line"><span class="comment">                                </span></span><br><span class="line"><span class="comment">                                <span class="doctag">@SWG</span>\Items(</span></span><br><span class="line"><span class="comment">                                    <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment">                                        property="item_id",</span></span><br><span class="line"><span class="comment">                                        type="integer",</span></span><br><span class="line"><span class="comment">                                        description="巡检项id"</span></span><br><span class="line"><span class="comment">                                    ),</span></span><br><span class="line"><span class="comment">                                )</span></span><br><span class="line"><span class="comment">                            ),</span></span><br><span class="line"><span class="comment">                        )</span></span><br><span class="line"><span class="comment">                   ),</span></span><br><span class="line"><span class="comment">               )</span></span><br><span class="line"><span class="comment">           ),</span></span><br><span class="line"><span class="comment">      )</span></span><br><span class="line"><span class="comment">     </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger3.png">
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger4.png">
+<img src="/2019/07/19/swagger在laravel中的使用/swagger3.png">
+<img src="/2019/07/19/swagger在laravel中的使用/swagger4.png">
 
 <h1 id="返回参数"><a href="#返回参数" class="headerlink" title="返回参数"></a>返回参数</h1><blockquote>
 <p>返回的参数中必定存在各种数组、对象的嵌套，我们在写swagger的时候其实可以参考复杂类型的参数传递方式，同样都是数组包裹对象，或者对象包裹数组，本质上是一样的。只是原本写在Parameter方法中的Schema现在要写在Response中。</p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Get(</span></span><br><span class="line"><span class="comment"> *   path="/checktaskitem/failed",</span></span><br><span class="line"><span class="comment"> *   tags=&#123;"巡检"&#125;,</span></span><br><span class="line"><span class="comment"> *   summary="根据巡检id获取该巡检违规项具体信息",</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Parameter(</span></span><br><span class="line"><span class="comment"> *      name="item_id",</span></span><br><span class="line"><span class="comment"> *      description="巡检id",</span></span><br><span class="line"><span class="comment"> *      required=true,</span></span><br><span class="line"><span class="comment"> *      type="integer",</span></span><br><span class="line"><span class="comment"> *      in="query"</span></span><br><span class="line"><span class="comment"> *  ),</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Response(                                             //定义响应参数的时候，首先使用Response</span></span><br><span class="line"><span class="comment"> *         response=200,                                       //响应</span></span><br><span class="line"><span class="comment"> *         description="基本信息",</span></span><br><span class="line"><span class="comment"> *         <span class="doctag">@SWG</span>\Schema(                                        //同样的这里使用Schema表示可以在model中查看注释</span></span><br><span class="line"><span class="comment"> *            type="array",</span></span><br><span class="line"><span class="comment"> *                  <span class="doctag">@SWG</span>\Items(                                //如果父级为[]子级为&#123;&#125;则要是用Items，其中包含了子级&#123;&#125;中的属性的类型和注释</span></span><br><span class="line"><span class="comment"> *                      <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment"> *                         property="item_id",</span></span><br><span class="line"><span class="comment"> *                         type="integer",</span></span><br><span class="line"><span class="comment"> *                         description="巡检项ID"</span></span><br><span class="line"><span class="comment"> *                     ),</span></span><br><span class="line"><span class="comment"> *                     <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment"> *                         property="inspection_id",</span></span><br><span class="line"><span class="comment"> *                         type="string",</span></span><br><span class="line"><span class="comment"> *                         description="巡检单id"</span></span><br><span class="line"><span class="comment"> *                     ),</span></span><br><span class="line"><span class="comment"> *                      <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment"> *                         property="item_name",</span></span><br><span class="line"><span class="comment"> *                         type="integer",</span></span><br><span class="line"><span class="comment"> *                         description="巡检项名称"</span></span><br><span class="line"><span class="comment"> *                     ),</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *                     <span class="doctag">@SWG</span>\Property(</span></span><br><span class="line"><span class="comment"> *                         property="enterprise_name",</span></span><br><span class="line"><span class="comment"> *                         type="string",</span></span><br><span class="line"><span class="comment"> *                         description="企业名称"</span></span><br><span class="line"><span class="comment"> *                     ),</span></span><br><span class="line"><span class="comment"> *                  ),</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *                ),</span></span><br><span class="line"><span class="comment"> *     ),</span></span><br><span class="line"><span class="comment"> *   <span class="doctag">@SWG</span>\Response(response=401, description="用户验证失败"),</span></span><br><span class="line"><span class="comment"> *   <span class="doctag">@SWG</span>\Response(response=500, description="服务器错误"),</span></span><br><span class="line"><span class="comment"> * )</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger5.png">
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger6.png">
+<img src="/2019/07/19/swagger在laravel中的使用/swagger5.png">
+<img src="/2019/07/19/swagger在laravel中的使用/swagger6.png">
 
 <h1 id="了解内容"><a href="#了解内容" class="headerlink" title="了解内容"></a>了解内容</h1><blockquote>
 <p>很多时候我们的接口是需要带上一个token才能进行使用的，如果没有token就会锁住该接口，不允许访问。这时我们可以在最后加上security，如果没有写则表示这个接口不需要使用token，比如登录接口就不需要。</p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Get(</span></span><br><span class="line"><span class="comment"> *   path="/checktaskitem/failed",</span></span><br><span class="line"><span class="comment"> *   tags=&#123;"巡检"&#125;,</span></span><br><span class="line"><span class="comment"> *   summary="根据巡检id获取该巡检违规项具体信息",</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Parameter(),</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SWG</span>\Response(),</span></span><br><span class="line"><span class="comment">*     security=&#123;</span></span><br><span class="line"><span class="comment">*          &#123;</span></span><br><span class="line"><span class="comment">*              "Bearer":&#123;&#125;</span></span><br><span class="line"><span class="comment">*          &#125;</span></span><br><span class="line"><span class="comment">*      &#125;,</span></span><br><span class="line"><span class="comment">* )</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
-<img src="/liupan.github.io/2019/07/19/swagger在laravel中的使用/swagger7.png">
+<img src="/2019/07/19/swagger在laravel中的使用/swagger7.png">
 
-      
     </div>
 
     
-
-    
-      
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
+        
       
 
-      
-      
-      
+      <footer class="post-footer">
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/07/18/VUE生成二维码并下载/" rel="next" title="VUE生成二维码并下载">
-                <i class="fa fa-chevron-left"></i> VUE生成二维码并下载
-              </a>
-            
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2019/08/04/laravel解析Excel文件/" rel="prev" title="laravel解析Excel文件">
+                  laravel解析Excel文件 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
           </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/04/laravel解析Excel文件/" rel="prev" title="laravel解析Excel文件">
-                laravel解析Excel文件 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+        
+      </footer>
+    
   </div>
   
   
   
   </article>
-
 
   </div>
 
@@ -554,12 +424,7 @@
           </div>
           
 
-  
-
-
-
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -570,44 +435,44 @@
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
-
+        
+        
+        
+        
       
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始前了解"><span class="nav-number">1.</span> <span class="nav-text">开始前了解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求方法"><span class="nav-number">2.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求参数"><span class="nav-number">3.</span> <span class="nav-text">请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单一点的请求方式"><span class="nav-number">3.1.</span> <span class="nav-text">简单一点的请求方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂一点的请求方式"><span class="nav-number">3.2.</span> <span class="nav-text">复杂一点的请求方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回参数"><span class="nav-number">4.</span> <span class="nav-text">返回参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解内容"><span class="nav-number">5.</span> <span class="nav-text">了解内容</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘盼</p>
-  <div class="site-description motion-element" itemprop="description">VUE 前端 laravel PHP JavaScript</div>
+  <div class="site-description" itemprop="description">VUE 前端 laravel PHP JavaScript</div>
 </div>
-
-
   <nav class="site-state motion-element">
-    
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-    
-
     
       
       
@@ -617,69 +482,22 @@
             <a href="/categories/">
           
         
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
-
-    
   </nav>
 
 
 
-
-
-
-
-
-
-
-
-
-
-          
-          
-        </div>
       </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始前了解"><span class="nav-number">1.</span> <span class="nav-text">开始前了解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求方法"><span class="nav-number">2.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求参数"><span class="nav-number">3.</span> <span class="nav-text">请求参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单一点的请求方式"><span class="nav-number">3.1.</span> <span class="nav-text">简单一点的请求方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂一点的请求方式"><span class="nav-number">3.2.</span> <span class="nav-text">复杂一点的请求方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#返回参数"><span class="nav-number">4.</span> <span class="nav-text">返回参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#了解内容"><span class="nav-number">5.</span> <span class="nav-text">了解内容</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
 
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -690,23 +508,113 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘盼</span>
-
-  
-
-  
 </div>
-
-
-
-
-
-
-
-
 
         
 
 
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
 
@@ -716,99 +624,33 @@
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-
   </div>
 
   
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-
-  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
 
-
-
-
-  <script src="/js/utils.js?v=7.2.0"></script>
-
-  <script src="/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.2.0"></script>
-
+<script src="/js/next-boot.js?v=7.4.0"></script>
 
 
 
   
-  <script src="/js/scrollspy.js?v=7.2.0"></script>
-<script src="/js/post-details.js?v=7.2.0"></script>
 
 
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
 
 
-  
+
+
+
+
+
+
 
 
 
@@ -821,110 +663,7 @@
 
   
 
-
-
   
-  <script>
-    
-    function addCount(Counter) {
-      var $visitors = $('.leancloud_visitors');
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
-        .done(function({ results }) {
-          if (results.length > 0) {
-            var counter = results[0];
-            
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text(counter.time + 1);
-            
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
-            
-              .fail(function ({ responseJSON }) {
-                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
-              })
-          } else {
-            
-              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
-                .done(function() {
-                  var $element = $(document.getElementById(url));
-                  $element.find('.leancloud-visitors-count').text(1);
-                })
-                .fail(function() {
-                  console.log('Failed to create');
-                });
-            
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': '',
-                'X-LC-Key': '',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
-            if (localhost.test(document.URL)) return;
-            addCount(Counter);
-          
-        });
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
-
-window.addEventListener("message", function(e) {
-  var data = e.data;
-  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
-    var featureID = data.split(':')[1];
-    var height = data.split(':')[2];
-    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
-  }
-}, false);
-</script>
-
-
-
-
-
-
-
 
   
 

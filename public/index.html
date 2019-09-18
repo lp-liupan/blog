@@ -4,93 +4,54 @@
 
 
 
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
 
-
-
-
-
-
-
-
-
-
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
-
-
-
-
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
 
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
 
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '7.2.0',
+    version: '7.4.0',
+    exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
     pangu: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
       copy_button: '复制',
       copy_success: '复制成功',
       copy_failure: '复制失败'
-    }
+    },
+    sidebarPadding: 40
   };
 </script>
 
@@ -104,24 +65,20 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习记录">
 <meta name="twitter:description" content="VUE 前端 laravel PHP JavaScript">
-
-
-
-
-
-  
-  
   <link rel="canonical" href="https://www.xiaotaotao.vip/">
 
 
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
-  
   <title>学习记录</title>
   
 
@@ -132,13 +89,8 @@
 
 
 
-
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -147,7 +99,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -164,30 +116,20 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container use-motion">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">学习记录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
@@ -200,110 +142,292 @@
 </div>
 
 
-
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
+  <ul id="menu" class="menu">
+      
+      
       
         
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
-
-    
-    
+        <li class="menu-item menu-item-home">
       
     
-
-    
+      
+      
+        
+      
+        
+      
+        
       
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
+      
+      
+      
         
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
+        <li class="menu-item menu-item-categories">
       
     
-
-    
+      
+      
+        
+      
+        
+          
+        
+      
+        
       
     
 
     <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
 
   </li>
+      
+      
+      
         
-        
+        <li class="menu-item menu-item-archives">
+      
+    
+      
+      
         
           
-          <li class="menu-item menu-item-archives">
-
-    
-    
+        
+      
+        
+      
+        
       
     
 
-    
-      
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">6</span></a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
     
 
-  
-
-  
 </nav>
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/09/18/nvm的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘盼">
+      <meta itemprop="description" content="VUE 前端 laravel PHP JavaScript">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/18/nvm的使用/" class="post-title-link" itemprop="url">nvm的使用</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-18 15:08:31 / 修改时间：15:09:03" itemprop="dateCreated datePublished" datetime="2019-09-18T15:08:31+08:00">2019-09-18</time>
+            </span>
+          
+            
+
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发小工具/" itemprop="url" rel="index"><span itemprop="name">开发小工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/18/nvm的使用/" class="post-meta-item leancloud_visitors" data-flag-title="nvm的使用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
     
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2>
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
   
+  
+  
+  </article>
 
+    
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/09/18/VUE生成二维码并下载/">
 
-  
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘盼">
+      <meta itemprop="description" content="VUE 前端 laravel PHP JavaScript">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/18/VUE生成二维码并下载/" class="post-title-link" itemprop="url">VUE生成二维码并下载</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-18 14:28:29" itemprop="dateCreated datePublished" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
+            </span>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VUE/" itemprop="url" rel="index"><span itemprop="name">VUE</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/2019/09/18/VUE生成二维码并下载/" class="post-meta-item leancloud_visitors" data-flag-title="VUE生成二维码并下载" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="开始前了解"><a href="#开始前了解" class="headerlink" title="开始前了解"></a>开始前了解</h1><blockquote>
+<p>在很多项目中二维码是由后端生成，但其实也可以在前端生成二维码并且直接下载。在这里我们就要使用一个vue的插件“qrcodejs2”，这个插件可以比较方便快捷的生成二维码。具体信息可以去官网了解。   </p>
+</blockquote>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/09/18/VUE生成二维码并下载/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
   
   
   
-  <div class="post-block">
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/09/17/VUE实现前端视频录制和截图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,54 +439,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="学习记录">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/17/VUE实现前端视频录制和截图/" class="post-title-link" itemprop="url">VUE实现前端视频录制和截图</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/09/17/VUE实现前端视频录制和截图/" class="post-title-link" itemprop="url">VUE实现前端视频录制和截图</a>
+          
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="创建时间：2019-09-17 15:15:18 / 修改时间：16:47:09" itemprop="dateCreated datePublished" datetime="2019-09-17T15:15:18+08:00">2019-09-17</time>
+              <time title="创建时间：2019-09-17 15:15:18" itemprop="dateCreated datePublished" datetime="2019-09-17T15:15:18+08:00">2019-09-17</time>
             </span>
           
-
-          
             
 
             
-          
-
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-18 14:28:29" itemprop="dateModified" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
+              </span>
+            
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VUE/" itemprop="url" rel="index"><span itemprop="name">VUE</span></a></span>
 
@@ -373,35 +487,17 @@
           
 
           
-            
-            
-          
-
-          
-          
-            <span id="/2019/09/17/VUE实现前端视频录制和截图/" class="post-meta-item leancloud_visitors" data-flag-title="VUE实现前端视频录制和截图">
+            <span id="/2019/09/17/VUE实现前端视频录制和截图/" class="post-meta-item leancloud_visitors" data-flag-title="VUE实现前端视频录制和截图" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              
-                <span class="leancloud-visitors-count"></span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
             </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
           
 
         </div>
       </header>
-    
 
     
     
@@ -409,15 +505,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>
-              介绍该功能是基于vue-video-player和recordrtc两个库来实现的。视频录制功能大多在后端实现，但是会出现不同步的情况，所以如果在直播或者视频播放时，想要录制一个简短的视频同时又要保证
-              ...
-            </p>
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>该功能是基于<code>vue-video-player</code>和<code>recordrtc</code>两个库来实现的。视频录制功能大多在后端实现，但是会出现不同步的情况，所以如果在直播或者视频播放时，想要录制一个简短的视频同时又要保证一致性的情况下，可以选择在前端进行视频的录制。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -432,57 +520,24 @@
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/08/16/php上传大文件配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -494,54 +549,44 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="学习记录">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/16/php上传大文件配置/" class="post-title-link" itemprop="url">php上传大文件配置</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/08/16/php上传大文件配置/" class="post-title-link" itemprop="url">php上传大文件配置</a>
+          
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="创建时间：2019-08-16 09:37:34 / 修改时间：13:12:53" itemprop="dateCreated datePublished" datetime="2019-08-16T09:37:34+08:00">2019-08-16</time>
+              <time title="创建时间：2019-08-16 09:37:34" itemprop="dateCreated datePublished" datetime="2019-08-16T09:37:34+08:00">2019-08-16</time>
             </span>
           
-
-          
             
 
             
-          
-
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-18 14:28:29" itemprop="dateModified" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
+              </span>
+            
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/服务器配置问题/" itemprop="url" rel="index"><span itemprop="name">服务器配置问题</span></a></span>
 
@@ -552,35 +597,17 @@
           
 
           
-            
-            
-          
-
-          
-          
-            <span id="/2019/08/16/php上传大文件配置/" class="post-meta-item leancloud_visitors" data-flag-title="php上传大文件配置">
+            <span id="/2019/08/16/php上传大文件配置/" class="post-meta-item leancloud_visitors" data-flag-title="php上传大文件配置" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              
-                <span class="leancloud-visitors-count"></span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
             </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
           
 
         </div>
       </header>
-    
 
     
     
@@ -588,16 +615,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>
-              PHP配置问题PHP上传文件大小限制
-PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传文件upload_max_filesize的大小为8M。所以如果文件大小超过了默
-              ...
-            </p>
+          <h1 id="PHP配置问题"><a href="#PHP配置问题" class="headerlink" title="PHP配置问题"></a>PHP配置问题</h1><h2 id="PHP上传文件大小限制"><a href="#PHP上传文件大小限制" class="headerlink" title="PHP上传文件大小限制"></a>PHP上传文件大小限制</h2><blockquote>
+<p>PHP配置文件默认的post上传数据<code>post_max_size</code>大小为2M，默认上传文件<code>upload_max_filesize</code>的大小为8M。所以如果文件大小超过了默认的最大值就会出现上传失败的问题。</p>
+</blockquote>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -612,57 +632,24 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/08/04/laravel解析Excel文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -674,33 +661,19 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="学习记录">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/04/laravel解析Excel文件/" class="post-title-link" itemprop="url">laravel解析Excel文件</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/08/04/laravel解析Excel文件/" class="post-title-link" itemprop="url">laravel解析Excel文件</a>
+          
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -709,8 +682,6 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
               <time title="创建时间：2019-08-04 10:31:36" itemprop="dateCreated datePublished" datetime="2019-08-04T10:31:36+08:00">2019-08-04</time>
             </span>
           
-
-          
             
 
             
@@ -718,18 +689,16 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                <time title="修改时间：2019-09-17 15:08:33" itemprop="dateModified" datetime="2019-09-17T15:08:33+08:00">2019-09-17</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-18 14:28:29" itemprop="dateModified" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
               </span>
             
-          
-
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/laravel/" itemprop="url" rel="index"><span itemprop="name">laravel</span></a></span>
 
@@ -740,35 +709,17 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
           
 
           
-            
-            
-          
-
-          
-          
-            <span id="/2019/08/04/laravel解析Excel文件/" class="post-meta-item leancloud_visitors" data-flag-title="laravel解析Excel文件">
+            <span id="/2019/08/04/laravel解析Excel文件/" class="post-meta-item leancloud_visitors" data-flag-title="laravel解析Excel文件" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              
-                <span class="leancloud-visitors-count"></span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
             </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
           
 
         </div>
       </header>
-    
 
     
     
@@ -776,17 +727,7 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>
-              安装#该插件已经更新到了3.1版本，目前我项目中使用的是2.1，这篇文章也是针对2.1版本的composer require maatwebsite/excel=2.1.*
-
-配置在laravel项目
-              ...
-            </p>
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#该插件已经更新到了3.1版本，目前我项目中使用的是2.1，这篇文章也是针对2.1版本的</span></span><br><span class="line">composer require maatwebsite/excel=2.1.*</span><br></pre></td></tr></table></figure><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在laravel项目的<code>config/app.php</code>文件中，找到<code>providers</code>和<code>aliases</code>数组，分别在两个数组中添加下面的内容。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -801,57 +742,24 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
+        <article itemscope itemtype="http://schema.org/Article">
   
   
   
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/07/19/swagger在laravel中的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -863,33 +771,19 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="学习记录">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/19/swagger在laravel中的使用/" class="post-title-link" itemprop="url">swagger在laravel中的使用</a>
-              
+        <h1 class="post-title" itemprop="name headline">
             
-          </h1>
-        
+            <a href="/2019/07/19/swagger在laravel中的使用/" class="post-title-link" itemprop="url">swagger在laravel中的使用</a>
+          
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
@@ -898,8 +792,6 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
               <time title="创建时间：2019-07-19 11:34:01" itemprop="dateCreated datePublished" datetime="2019-07-19T11:34:01+08:00">2019-07-19</time>
             </span>
           
-
-          
             
 
             
@@ -907,18 +799,16 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                <time title="修改时间：2019-08-04 10:08:55" itemprop="dateModified" datetime="2019-08-04T10:08:55+08:00">2019-08-04</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-18 14:28:29" itemprop="dateModified" datetime="2019-09-18T14:28:29+08:00">2019-09-18</time>
               </span>
             
-          
-
           
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发小工具/" itemprop="url" rel="index"><span itemprop="name">开发小工具</span></a></span>
 
@@ -929,35 +819,17 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
           
 
           
-            
-            
-          
-
-          
-          
-            <span id="/2019/07/19/swagger在laravel中的使用/" class="post-meta-item leancloud_visitors" data-flag-title="swagger在laravel中的使用">
+            <span id="/2019/07/19/swagger在laravel中的使用/" class="post-meta-item leancloud_visitors" data-flag-title="swagger在laravel中的使用" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
-              
-                <span class="leancloud-visitors-count"></span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
             </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
           
 
         </div>
       </header>
-    
 
     
     
@@ -965,16 +837,9 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>
-              开始前了解
-推荐一个比较完成的文档https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#
-              ...
-            </p>
+          <h1 id="开始前了解"><a href="#开始前了解" class="headerlink" title="开始前了解"></a>开始前了解</h1><blockquote>
+<p>推荐一个比较完成的文档<a href="https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896" target="_blank" rel="noopener">https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896</a><br>swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释     </p>
+</blockquote>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -989,231 +854,20 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
   </div>
   
   
   
   </article>
 
-
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/07/18/VUE生成二维码并下载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="刘盼">
-      <meta itemprop="description" content="VUE 前端 laravel PHP JavaScript">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="学习记录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/18/VUE生成二维码并下载/" class="post-title-link" itemprop="url">VUE生成二维码并下载</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-18 19:13:39" itemprop="dateCreated datePublished" datetime="2019-07-18T19:13:39+08:00">2019-07-18</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                <time title="修改时间：2019-07-24 11:27:02" itemprop="dateModified" datetime="2019-07-24T11:27:02+08:00">2019-07-24</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/VUE/" itemprop="url" rel="index"><span itemprop="name">VUE</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2019/07/18/VUE生成二维码并下载/" class="post-meta-item leancloud_visitors" data-flag-title="VUE生成二维码并下载">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              开始前了解
-在很多项目中二维码是由后端生成，但其实也可以在前端生成二维码并且直接下载。在这里我们就要使用一个vue的插件“qrcodejs2”，这个插件可以比较方便快捷的生成二维码。具体信息可以去官网
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/18/VUE生成二维码并下载/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
 
@@ -1222,7 +876,6 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
           
 
         </div>
-        
           
   
   <div class="sidebar-toggle">
@@ -1233,35 +886,37 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">刘盼</p>
-  <div class="site-description motion-element" itemprop="description">VUE 前端 laravel PHP JavaScript</div>
+  <div class="site-description" itemprop="description">VUE 前端 laravel PHP JavaScript</div>
 </div>
-
-
   <nav class="site-state motion-element">
-    
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-    
-
     
       
       
@@ -1271,52 +926,22 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
             <a href="/categories/">
           
         
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
     
-
-    
   </nav>
 
 
 
-
-
-
-
-
-
-
-
-
-
-          
-          
-        </div>
       </div>
-
-      
-
-      
 
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
@@ -1327,23 +952,113 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">刘盼</span>
-
-  
-
-  
 </div>
-
-
-
-
-
-
-
-
 
         
 
 
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+              leancloudSelector(url).innerText = counter.time + 1;
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': '',
+            'X-LC-Key': '',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
 
@@ -1353,95 +1068,31 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
         
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-
   </div>
 
   
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-
-  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/muse.js?v=7.4.0"></script>
 
-
-
-
-  <script src="/js/utils.js?v=7.2.0"></script>
-
-  <script src="/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.2.0"></script>
-
+<script src="/js/next-boot.js?v=7.4.0"></script>
 
 
 
   
 
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
 
 
-  
+
+
+
+
+
+
 
 
 
@@ -1455,110 +1106,8 @@ PHP配置文件默认的post上传数据post_max_size大小为2M，默认上传�
 
 
   
-  <script>
-    
-    function showTime(Counter) {
-      var entries = [];
-      var $visitors = $('.leancloud_visitors');
 
-      $visitors.each(function() {
-        entries.push( $(this).attr('id').trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
-        .done(function({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
-        .done(function({ api_server }) {
-          var Counter = function(method, url, data) {
-            return $.ajax({
-              method: method,
-              url: 'https://' + api_server + '/1.1' + url,
-              headers: {
-                'X-LC-Id': '',
-                'X-LC-Key': '',
-                'Content-Type': 'application/json',
-              },
-              data: data
-            });
-          };
-          
-            if ($('.post-title-link').length >= 1) {
-              showTime(Counter);
-            }
-          
-        });
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
-
-window.addEventListener("message", function(e) {
-  var data = e.data;
-  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
-    var featureID = data.split(':')[1];
-    var height = data.split(':')[2];
-    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
-  }
-}, false);
-</script>
-
-
-
-
-
-
-
+  
 
   
 
