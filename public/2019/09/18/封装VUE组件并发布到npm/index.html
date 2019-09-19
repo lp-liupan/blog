@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="前言因为项目中遇到了部分需求在网上并没有找到比较好的解决方案，所以决定自己实现。实现过后本着为劳苦大众做贡献的想法决定将其开源，顺便也学习一下开源的流程。  至于网上这么多教程，我还要单独写一篇。因为我遇到了很多坑，搞了好几天才完整的弄好，为了下次发布npm包方便，所以记录一下。  准备npm 首先需要到npm官网去注册，点这里去哦。     然后在电脑上登录1npm login    项目准备这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装VUE组件并发布到npm">
+<meta property="og:url" content="https://www.xiaotaotao.vip/2019/09/18/封装VUE组件并发布到npm/index.html">
+<meta property="og:site_name" content="学习记录">
+<meta property="og:description" content="前言因为项目中遇到了部分需求在网上并没有找到比较好的解决方案，所以决定自己实现。实现过后本着为劳苦大众做贡献的想法决定将其开源，顺便也学习一下开源的流程。  至于网上这么多教程，我还要单独写一篇。因为我遇到了很多坑，搞了好几天才完整的弄好，为了下次发布npm包方便，所以记录一下。  准备npm 首先需要到npm官网去注册，点这里去哦。     然后在电脑上登录1npm login    项目准备这">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.xiaotaotao.vip/2019/09/18/封装VUE组件并发布到npm/目录结构.png">
+<meta property="og:updated_time" content="2019-09-19T01:45:22.159Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="封装VUE组件并发布到npm">
+<meta name="twitter:description" content="前言因为项目中遇到了部分需求在网上并没有找到比较好的解决方案，所以决定自己实现。实现过后本着为劳苦大众做贡献的想法决定将其开源，顺便也学习一下开源的流程。  至于网上这么多教程，我还要单独写一篇。因为我遇到了很多坑，搞了好几天才完整的弄好，为了下次发布npm包方便，所以记录一下。  准备npm 首先需要到npm官网去注册，点这里去哦。     然后在电脑上登录1npm login    项目准备这">
+<meta name="twitter:image" content="https://www.xiaotaotao.vip/2019/09/18/封装VUE组件并发布到npm/目录结构.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.xiaotaotao.vip/2019/09/18/封装VUE组件并发布到npm/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>封装VUE组件并发布到npm | 学习记录</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">学习记录</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类<span class="badge">4</span></a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档<span class="badge">7</span></a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xiaotaotao.vip/2019/09/18/封装VUE组件并发布到npm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="刘盼">
+      <meta itemprop="description" content="VUE 前端 laravel PHP JavaScript">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="学习记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">封装VUE组件并发布到npm
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-18 16:44:24" itemprop="dateCreated datePublished" datetime="2019-09-18T16:44:24+08:00">2019-09-18</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                <time title="修改时间：2019-09-19 09:45:22" itemprop="dateModified" datetime="2019-09-19T09:45:22+08:00">2019-09-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/开发小工具/" itemprop="url" rel="index"><span itemprop="name">开发小工具</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/09/18/封装VUE组件并发布到npm/" class="post-meta-item leancloud_visitors" data-flag-title="封装VUE组件并发布到npm">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为项目中遇到了部分需求在网上并没有找到比较好的解决方案，所以决定自己实现。实现过后本着为劳苦大众做贡献的想法决定将其开源，顺便也学习一下开源的流程。</p>
+<blockquote>
+<p>至于网上这么多教程，我还要单独写一篇。因为我遇到了很多坑，搞了好几天才完整的弄好，为了下次发布npm包方便，所以记录一下。</p>
+</blockquote>
+<h2 id="准备npm"><a href="#准备npm" class="headerlink" title="准备npm"></a>准备npm</h2><ol>
+<li>首先需要到npm官网去注册，<a href="https://www.npmjs.com/" title="npm官网" target="_blank" rel="noopener">点这里去哦</a>。    </li>
+<li>然后在电脑上登录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><p>这里我们使用的是vue项目，而且需要发布的包的功能也不复杂，所以我们选择使用<code>webpack-simple</code>搭建一个简易的<code>vue</code>项目，使用<code>vue@cli</code>搭建的脚手架对我们来说太臃肿了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack-simple 项目名  </span><br><span class="line"></span><br><span class="line"><span class="comment">#然后会提示填写作者，项目名等信息，不想写就直接‘y’或者‘enter’</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> 项目文件</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><code>npm</code>下载完毕后就可以直接运行项目了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>此时项目的目录主要结构应该是如下这样的</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">-src</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-assets</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-</span>|<span class="string">-logo.png</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-App.vue</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-main.js</span></span><br><span class="line">|<span class="string">-index.html</span></span><br><span class="line">|<span class="string">-package.json</span></span><br><span class="line">|<span class="string">-webpack.config.js</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="项目开发"><a href="#项目开发" class="headerlink" title="项目开发"></a>项目开发</h2><p>可以先改造一下项目目录结构，下面是我改造后的，也可以根据自己的编码习惯改造，但是增加的两个<code>index.js</code>是比较关键的文件，不要漏掉了。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">|<span class="string">-src</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-tape         //自定义文件夹</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-</span>|<span class="string">-tape.vue   //自定义组件名</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-</span>|<span class="string">-index.js   //注意这个文件</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-App.vue</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-main.js</span></span><br><span class="line">|<span class="string">-</span>|<span class="string">-index.js     //注意这个文件</span></span><br><span class="line">|<span class="string">-index.html</span></span><br><span class="line">|<span class="string">-package.json</span></span><br><span class="line">|<span class="string">-webpack.config.js</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2019/09/18/封装VUE组件并发布到npm/目录结构.png">
+
+<hr>
+<p>注意：<br>在编辑需要发布到npm的组件时（这里就是指<code>tape.vue</code>组件），务必要记得不能忽略<code>name</code>属性，这个涉及到后面组件导出的问题。</p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>在实现了功能过后，我们可以利用<code>App.vue</code>来测试一下组件的功能</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">vueVideoTape</span> &gt;</span><span class="tag">&lt;/<span class="name">vueVideoTape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> vueVideoTape <span class="keyword">from</span> <span class="string">'./tape/tape'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span>  &#123;</span></span><br><span class="line">    data()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span>&#123;&#125;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    components:&#123;</span><br><span class="line">       vueVideoTape</span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>经过测试没有问题后，就可以开始着手发布前的准备了，这里也是最麻烦的地方，很多的小细节要注意。</p>
+</blockquote>
+<p>首先要对组件的导出做处理，要实现其他人通过<code>npm install</code>下载后，可以全局引入，也可以组件内按需引入。也就是要实现下列这两个引用方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//全局引入</span></span><br><span class="line"><span class="keyword">import</span> tape <span class="keyword">from</span> <span class="string">'vue-video-tape'</span>;</span><br><span class="line">Vue.use(tape);</span><br><span class="line"></span><br><span class="line"><span class="comment">//组件内按需引入</span></span><br><span class="line"><span class="keyword">import</span> &#123;VueVideoTape&#125; <span class="keyword">from</span> <span class="string">'vue-video-tape'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>与<code>tape.vue</code>同级<code>index.js</code>对组件导出做如下处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueVideoTape <span class="keyword">from</span> <span class="string">'./tape.vue'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里VueVideoTape.name就是组件中的name属性，所以正如前文提到到，name属性不可以忽略，必须要有</span></span><br><span class="line">VueVideoTape.install = <span class="function"><span class="params">Vue</span> =&gt;</span> Vue.component(VueVideoTape.name, VueVideoTape);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> VueVideoTape;</span><br></pre></td></tr></table></figure>
+
+<p>与<code>main.js</code>同级的<code>index.js</code>对组件导出做如下处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//如果有多个导出的组件，在这里要引入</span></span><br><span class="line"><span class="keyword">import</span> VueVideoTape <span class="keyword">from</span> <span class="string">'./tape/index.js'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果引入多个组件，在这里都要注册</span></span><br><span class="line"><span class="keyword">const</span> components = [</span><br><span class="line">	VueVideoTape,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> install = <span class="function"><span class="keyword">function</span>(<span class="params">Vue, opts = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  components.map(<span class="function"><span class="params">component</span> =&gt;</span> &#123;</span><br><span class="line">    Vue.component(component.name, component);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">'undefined'</span> &amp;&amp; <span class="built_in">window</span>.Vue) &#123;</span><br><span class="line">  install(<span class="built_in">window</span>.Vue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//多个组件时，在这里要全部导出，install不可以忽略，全局引入时，vue会自动调用install</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  install,</span><br><span class="line">  VueVideoTape,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//多个组件导出，这里依次导出，组件内按需引入时就是引入这里的组件</span></span><br><span class="line"><span class="keyword">export</span> &#123;</span><br><span class="line">	VueVideoTape</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>文件的导出处理完后，还需要对webpack的配置进行修改。    </p>
+</blockquote>
+<p>首先是对开发环境和生产环境的区分，生产环境就直接打包到<code>dist</code>文件夹。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">entry: NODE_ENV == <span class="string">'development'</span> ? <span class="string">'./src/main.js'</span> : <span class="string">'./src/index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'./dist'</span>),<span class="comment">//打包输出地址</span></span><br><span class="line">    publicPath: <span class="string">'/dist/'</span>,</span><br><span class="line">    filename: <span class="string">'vue-video-tape.js'</span>,<span class="comment">//打包后文件名</span></span><br><span class="line">    library:<span class="string">'VueVideoTape'</span>,</span><br><span class="line">	libraryTarget:<span class="string">'umd'</span>,</span><br><span class="line">	umdNamedDefine: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开发功能时候也会需要引入其他的<code>npm</code>包，但是我们打包发布的时候，要将这些引入的包排除，否则就会导致打包的文件会非常大，而且引入过后造成依赖重复，冗余非常严重。所以在生产环境的时候，我们要对打包的文件进行单独处理。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在webpck.config.js最后加上下面的代码</span></span><br><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'production'</span>) &#123;</span><br><span class="line">  <span class="built_in">module</span>.exports.devtool = <span class="string">'#source-map'</span></span><br><span class="line">  <span class="built_in">module</span>.exports.plugins = (<span class="built_in">module</span>.exports.plugins || []).concat([</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="string">'"production"'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">      sourceMap: <span class="literal">false</span>,<span class="comment">//这里改为false</span></span><br><span class="line">      compress: &#123;</span><br><span class="line">        warnings: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.LoaderOptionsPlugin(&#123;</span><br><span class="line">      minimize: <span class="literal">true</span></span><br><span class="line">	&#125;),</span><br><span class="line">	<span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;</span><br><span class="line">		compress: &#123;</span><br><span class="line">		  warnings: <span class="literal">false</span></span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;)</span><br><span class="line">  ])</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里是对组件内依赖的排除</span></span><br><span class="line">  <span class="built_in">module</span>.exports.externals = &#123;</span><br><span class="line">	recordrtc: &#123;</span><br><span class="line">        commonjs: <span class="string">'recordrtc'</span>,</span><br><span class="line">        commonjs2: <span class="string">'recordrtc'</span>,</span><br><span class="line">        amd: <span class="string">'recordrtc'</span>,</span><br><span class="line">        root: <span class="string">'_'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">'vue-video-player'</span>: &#123;</span><br><span class="line">        commonjs: <span class="string">'vue-video-player'</span>,</span><br><span class="line">        commonjs2: <span class="string">'vue-video-player'</span>,</span><br><span class="line">        amd: <span class="string">'vue-video-player'</span>,</span><br><span class="line">        root: <span class="string">'_'</span></span><br><span class="line">	&#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack配置修改完后，还需要对package.json进行部分修改，主要涉及到几个发布npm包需要用到的关键属性。</p>
+<p><code>name</code>属性决定了<code>npm install</code>时候的名字</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"name": "vue-video-tape",</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-video-tape</span><br></pre></td></tr></table></figure>
+
+<p><code>version</code>属性是发布的版本，<code>每次发布</code>都必须要对其进行修改，否则发布失败</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"version": "1.1.0",</span><br></pre></td></tr></table></figure>
+
+<p><code>private</code>属性是决定是否开源，如果为<code>true</code>则发布不了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"private": false,</span><br></pre></td></tr></table></figure>
+
+<p><code>main</code>属性决定了当<code>import xxx from &#39;xxxxx&#39;</code>时，引入哪个文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"main": "dist/vue-video-tape.js",</span><br></pre></td></tr></table></figure>
+
+<p>每次发布时我们都需要对项目进行打包，但是经常会忘记打包直接发布，导致发布的新版本是上一个版本，所以我们可以引入一个事件，在每次发布的前自动进行打包操作。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",</span><br><span class="line">    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",</span><br><span class="line">    "prepublishOnly": "npm run build"</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>files</code>属性指定当<code>npm install</code>时下载的文件，如下配置后，<code>npm install vue-video-tape</code>下载的包就只有dist文件夹和package.json文件，可以减少包的体积。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"files": [</span><br><span class="line">    "dist",</span><br><span class="line">    <span class="string">"package.json"</span></span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>最后的最后，当一切准备就绪了，就可以执行发布命令了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+
+<p>注意：可能会报错你的项目名字已经有了，这时候你需要去修改<code>package.json</code>文件中的<code>name</code>属性。     </p>
+<p>发布成功后，可以直接到npm官网上搜索你的包。</p>
+<h2 id="下载使用"><a href="#下载使用" class="headerlink" title="下载使用"></a>下载使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install 包名</span><br></pre></td></tr></table></figure>
+
+<p>全局引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xxx <span class="keyword">from</span> <span class="string">'vue-video-tape'</span>;</span><br><span class="line">Vue.use(xxx);</span><br></pre></td></tr></table></figure>
+
+<p>组件内引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueVideoTape <span class="keyword">from</span> <span class="string">'vue-video-tape'</span>;</span><br><span class="line"></span><br><span class="line">components:&#123;VueVideoTape&#125;,</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/18/nvm的使用/" rel="next" title="nvm的使用">
+                <i class="fa fa-chevron-left"></i> nvm的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+  <p class="site-author-name" itemprop="name">刘盼</p>
+  <div class="site-description motion-element" itemprop="description">VUE 前端 laravel PHP JavaScript</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+  </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备npm"><span class="nav-number">2.</span> <span class="nav-text">准备npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目准备"><span class="nav-number">3.</span> <span class="nav-text">项目准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目开发"><span class="nav-number">4.</span> <span class="nav-text">项目开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布"><span class="nav-number">5.</span> <span class="nav-text">发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载使用"><span class="nav-number">6.</span> <span class="nav-text">下载使用</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">刘盼</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + '')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': '',
+                'X-LC-Key': '',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>
