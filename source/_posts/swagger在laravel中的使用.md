@@ -7,7 +7,8 @@ categories: 开发小工具
 
 # 开始前了解
 
->推荐一个比较完成的文档[https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896](https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896)     
+>推荐一个比较完成的文档[https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896](https://learnku.com/laravel/t/7430/how-to-write-api-documents-based-on-swagger-php#b5a896)  
+<!-- more -->   
 >swagger主要是用于给api接口写文档的，接口主要有几个关键点需要文档对其进行解释     
 
 1. 请求方法

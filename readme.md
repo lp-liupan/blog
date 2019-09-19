@@ -19,7 +19,7 @@ npm install
 下载主题
 
 ```bash
-git clone https://github.com/theme-next/hexo-theme-next.git themes/next
+git clone --branch v7.4.0 https://github.com/theme-next/hexo-theme-next.git themes/next
 ```
 
 修改配置文件

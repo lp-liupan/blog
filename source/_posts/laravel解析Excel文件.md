@@ -10,6 +10,7 @@ categories: laravel
 #该插件已经更新到了3.1版本，目前我项目中使用的是2.1，这篇文章也是针对2.1版本的
 composer require maatwebsite/excel=2.1.*
 ```
+<!-- more -->
 
 ## 配置
 
