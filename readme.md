@@ -29,3 +29,15 @@ rm -rf themes/next/_config.yml
 
 cp _config.yml.example themes/next/_config.yml
 ```
+
+## 新建博客
+
+```bash
+hexo new 博客名
+```
+
+## 提交博客内容、
+
+```bash
+hexo clean & hexo d -g
+```
