@@ -31,7 +31,7 @@ cd php-7.4.0
 
 ```bash
 #配置编译参数，检查编译环境是否符合
-./configure --prefix=/usr/local/php7.3 --with-config-file-path=/usr/local/php7.3/etc --with-curl --with-freetype-dir --with-gd --with-gettext --with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-openssl --with-pcre-regex --with-pdo-mysql --with-pdo-sqlite --with-pear --with-png-dir --with-xmlrpc --with-xsl --with-zlib --with-mhash --with-jpeg-dir --enable-fpm --enable-bcmath --enable-libxml --enable-inline-optimization --enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-xml --enable-zip --enable-ftp --enable-intl --enable-mysqlnd --disable-rpath --disable-fileinfo
+./configure --prefix=/usr/local/php7.3 --with-config-file-path=/usr/local/php7.3/lib --with-curl --with-freetype-dir --with-gd --with-gettext --with-iconv-dir --with-kerberos --with-libdir=lib64 --with-libxml-dir --with-openssl --with-pcre-regex --with-pdo-mysql --with-pdo-sqlite --with-pear --with-png-dir --with-xmlrpc --with-xsl --with-zlib --with-mhash --with-jpeg-dir --enable-fpm --enable-bcmath --enable-libxml --enable-inline-optimization --enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl --enable-shmop --enable-soap --enable-sockets --enable-sysvsem --enable-xml --enable-zip --enable-ftp --enable-intl --enable-mysqlnd --disable-rpath --disable-fileinfo
 ```
 
 一般执行上面代码后都会出现找不到某个包的错误，因为配置参数中设置了php支持的功能需要下载包。主要是有以下几个问题，如果出现了其他问题处理方式类似。总之就是要保证执行完上述命令后不能有错误。
