@@ -1,7 +1,7 @@
 ---
 title: laravel解析Excel文件
 date: 2019-08-04 10:31:36
-categories: laravel
+categories: PHP
 ---
 
 ## 安装
